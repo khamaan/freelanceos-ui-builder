@@ -6,9 +6,9 @@ import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { Briefcase, Check, X } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Briefcase, Check, X, Menu } from 'lucide-react';
 import { SubscriptionModal } from '@/components/subscription/SubscriptionModal';
-
 const plans = [
   {
     id: 'free',
@@ -90,13 +90,15 @@ export default function Pricing() {
       {/* Navigation */}
       <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Briefcase className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-foreground">FreelanceOS</span>
           </Link>
-          <div className="flex items-center gap-4">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex items-center gap-4">
             <ThemeToggle />
             <Link to="/login">
               <Button variant="ghost">Sign in</Button>
@@ -104,6 +106,32 @@ export default function Pricing() {
             <Link to="/register">
               <Button>Get Started</Button>
             </Link>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="flex sm:hidden items-center gap-2">
+            <ThemeToggle />
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-64">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-6">
+                  <Link to="/login" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                    Sign in
+                  </Link>
+                  <Link to="/register">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
@@ -143,7 +171,7 @@ export default function Pricing() {
             {plans.map((plan) => (
               <Card
                 key={plan.id}
-                className={`relative flex flex-col ${plan.popular ? 'border-primary shadow-lg scale-105' : ''}`}
+                className={`relative flex flex-col ${plan.popular ? 'border-primary shadow-lg md:scale-105' : ''}`}
               >
                 {plan.popular && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
