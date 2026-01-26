@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { 
   Briefcase, 
   BarChart3, 
@@ -11,7 +12,8 @@ import {
   ArrowRight,
   Star,
   Zap,
-  Shield
+  Shield,
+  Menu
 } from 'lucide-react';
 
 const features = [
@@ -66,20 +68,48 @@ export default function Landing() {
             </div>
             <span className="text-xl font-bold text-foreground">FreelanceOS</span>
           </Link>
-          <div className="flex items-center gap-1 sm:gap-4">
-            <Link to="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 sm:px-0">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex items-center gap-4">
+            <Link to="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Pricing
             </Link>
             <ThemeToggle />
-            <Link to="/login" className="hidden sm:block">
+            <Link to="/login">
               <Button variant="ghost">Sign in</Button>
             </Link>
-            <Link to="/login" className="sm:hidden">
-              <Button variant="ghost" size="sm">Sign in</Button>
-            </Link>
-            <Link to="/register" className="hidden sm:block">
+            <Link to="/register">
               <Button>Get Started</Button>
             </Link>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="flex sm:hidden items-center gap-2">
+            <ThemeToggle />
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-64">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-6">
+                  <Link to="/pricing" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                    Pricing
+                  </Link>
+                  <Link to="/login" className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                    Sign in
+                  </Link>
+                  <Link to="/register">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
