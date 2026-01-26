@@ -67,6 +67,9 @@ export default function Landing() {
             <span className="text-xl font-bold text-foreground">FreelanceOS</span>
           </div>
           <div className="flex items-center gap-4">
+            <Link to="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hidden sm:block">
+              Pricing
+            </Link>
             <ThemeToggle />
             <Link to="/login">
               <Button variant="ghost">Sign in</Button>
