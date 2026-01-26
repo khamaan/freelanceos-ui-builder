@@ -52,23 +52,23 @@ function formatValue(value: number, format: string) {
 
 export function StatsCards() {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {statsConfig.map((stat) => (
         <Card key={stat.label} className="relative overflow-hidden">
-          <CardContent className="p-6">
+          <CardContent className="p-4 md:p-6">
             <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-muted-foreground truncate">
                   {stat.label}
                 </p>
-                <p className="mt-2 text-3xl font-bold text-foreground">
+                <p className="mt-2 text-2xl md:text-3xl font-bold text-foreground">
                   {formatValue(stat.value, stat.format)}
                 </p>
-                <div className="mt-2 flex items-center gap-1">
+                <div className="mt-2 flex items-center gap-1 flex-wrap">
                   {stat.changeType === 'positive' ? (
-                    <TrendingUp className="h-4 w-4 text-success" />
+                    <TrendingUp className="h-4 w-4 text-success flex-shrink-0" />
                   ) : (
-                    <TrendingDown className="h-4 w-4 text-destructive" />
+                    <TrendingDown className="h-4 w-4 text-destructive flex-shrink-0" />
                   )}
                   <span
                     className={cn(
@@ -78,11 +78,11 @@ export function StatsCards() {
                   >
                     {stat.change > 0 ? '+' : ''}{stat.change}%
                   </span>
-                  <span className="text-sm text-muted-foreground">vs last month</span>
+                  <span className="text-sm text-muted-foreground hidden sm:inline">vs last month</span>
                 </div>
               </div>
-              <div className="rounded-lg bg-primary/10 p-3">
-                <stat.icon className="h-5 w-5 text-primary" />
+              <div className="rounded-lg bg-primary/10 p-2 md:p-3 flex-shrink-0">
+                <stat.icon className="h-4 w-4 md:h-5 md:w-5 text-primary" />
               </div>
             </div>
           </CardContent>

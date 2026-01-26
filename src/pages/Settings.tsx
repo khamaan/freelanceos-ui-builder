@@ -58,13 +58,13 @@ export default function Settings() {
   return (
     <div className="min-h-screen">
       <Topbar title="Settings" subtitle="Manage your account preferences" />
-      <div className="p-6 animate-fade-in">
-        <Tabs defaultValue="profile" className="space-y-6">
-          <TabsList className="bg-muted">
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
-            <TabsTrigger value="appearance">Appearance</TabsTrigger>
-            <TabsTrigger value="billing">Billing</TabsTrigger>
+      <div className="p-4 md:p-6 animate-fade-in">
+        <Tabs defaultValue="profile" className="space-y-4 md:space-y-6">
+          <TabsList className="bg-muted w-full flex overflow-x-auto">
+            <TabsTrigger value="profile" className="flex-1 min-w-fit">Profile</TabsTrigger>
+            <TabsTrigger value="notifications" className="flex-1 min-w-fit">Notifications</TabsTrigger>
+            <TabsTrigger value="appearance" className="flex-1 min-w-fit">Appearance</TabsTrigger>
+            <TabsTrigger value="billing" className="flex-1 min-w-fit">Billing</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile">

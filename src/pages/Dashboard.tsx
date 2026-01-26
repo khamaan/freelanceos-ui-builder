@@ -13,13 +13,13 @@ export default function Dashboard() {
         title="Dashboard" 
         subtitle={`${stats.hoursThisWeek} hours tracked this week`} 
       />
-      <div className="p-6 space-y-6 animate-fade-in">
+      <div className="p-4 md:p-6 space-y-4 md:space-y-6 animate-fade-in">
         <StatsCards />
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 lg:grid-cols-3">
           <RevenueChart />
           <ProjectDistributionChart />
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
           <RecentTasks />
           <UpcomingEvents />
         </div>

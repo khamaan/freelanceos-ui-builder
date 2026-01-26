@@ -45,7 +45,7 @@ export function CalendarWidget() {
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between pb-4">
+      <CardHeader className="flex flex-row items-center justify-between pb-4 flex-wrap gap-2">
         <CardTitle className="text-lg font-semibold">
           {format(currentMonth, 'MMMM yyyy')}
         </CardTitle>
@@ -58,18 +58,19 @@ export function CalendarWidget() {
           </Button>
           <Button size="sm" className="ml-2 gap-1">
             <Plus className="h-4 w-4" />
-            Event
+            <span className="hidden sm:inline">Event</span>
           </Button>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-2 sm:p-6 pt-0 sm:pt-0">
         <div className="grid grid-cols-7 gap-px rounded-lg bg-border overflow-hidden">
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+          {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
             <div
-              key={day}
-              className="bg-muted py-2 text-center text-xs font-medium text-muted-foreground"
+              key={`${day}-${i}`}
+              className="bg-muted py-1.5 sm:py-2 text-center text-xs font-medium text-muted-foreground"
             >
-              {day}
+              <span className="sm:hidden">{day}</span>
+              <span className="hidden sm:inline">{['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][i]}</span>
             </div>
           ))}
           {days.map((day, index) => {
@@ -81,20 +82,20 @@ export function CalendarWidget() {
               <div
                 key={index}
                 className={cn(
-                  'min-h-[80px] bg-card p-1 transition-colors hover:bg-accent/50',
+                  'min-h-[50px] sm:min-h-[80px] bg-card p-0.5 sm:p-1 transition-colors hover:bg-accent/50',
                   !isCurrentMonth && 'bg-muted/50'
                 )}
               >
                 <div
                   className={cn(
-                    'mb-1 flex h-6 w-6 items-center justify-center rounded-full text-sm',
+                    'mb-0.5 sm:mb-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-xs sm:text-sm',
                     isToday && 'bg-primary text-primary-foreground font-medium',
                     !isToday && !isCurrentMonth && 'text-muted-foreground'
                   )}
                 >
                   {format(day, 'd')}
                 </div>
-                <div className="space-y-0.5">
+                <div className="space-y-0.5 hidden sm:block">
                   {dayEvents.slice(0, 2).map((event) => (
                     <div
                       key={event.id}
@@ -113,6 +114,14 @@ export function CalendarWidget() {
                     </div>
                   )}
                 </div>
+                {dayEvents.length > 0 && (
+                  <div className="sm:hidden flex justify-center">
+                    <div 
+                      className="h-1.5 w-1.5 rounded-full" 
+                      style={{ backgroundColor: dayEvents[0].color }}
+                    />
+                  </div>
+                )}
               </div>
             );
           })}

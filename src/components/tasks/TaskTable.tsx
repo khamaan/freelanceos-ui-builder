@@ -103,7 +103,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
   };
 
   return (
-    <div className="rounded-lg border border-border bg-card">
+    <div className="rounded-lg border border-border bg-card overflow-x-auto">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent">
@@ -113,7 +113,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                 onCheckedChange={toggleSelectAll}
               />
             </TableHead>
-            <TableHead>
+            <TableHead className="min-w-[180px]">
               <Button
                 variant="ghost"
                 size="sm"
@@ -124,7 +124,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>Project</TableHead>
+            <TableHead className="hidden md:table-cell">Project</TableHead>
             <TableHead>
               <Button
                 variant="ghost"
@@ -136,7 +136,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>
+            <TableHead className="hidden sm:table-cell">
               <Button
                 variant="ghost"
                 size="sm"
@@ -147,7 +147,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>
+            <TableHead className="hidden lg:table-cell">
               <Button
                 variant="ghost"
                 size="sm"
@@ -158,7 +158,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                 <ArrowUpDown className="ml-2 h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>Time</TableHead>
+            <TableHead className="hidden xl:table-cell">Time</TableHead>
             <TableHead className="w-12"></TableHead>
           </TableRow>
         </TableHeader>
@@ -177,27 +177,30 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <StatusIcon className={cn('h-4 w-4', status.className.split(' ')[1])} />
-                    <span className="font-medium text-foreground">{task.title}</span>
+                    <StatusIcon className={cn('h-4 w-4 flex-shrink-0', status.className.split(' ')[1])} />
+                    <div className="min-w-0">
+                      <span className="font-medium text-foreground block truncate">{task.title}</span>
+                      <span className="text-xs text-muted-foreground md:hidden block">{task.projectName}</span>
+                    </div>
                   </div>
                 </TableCell>
-                <TableCell className="text-muted-foreground">
+                <TableCell className="text-muted-foreground hidden md:table-cell">
                   {task.projectName}
                 </TableCell>
                 <TableCell>
-                  <Badge variant="outline" className={cn(status.className)}>
+                  <Badge variant="outline" className={cn(status.className, "whitespace-nowrap")}>
                     {status.label}
                   </Badge>
                 </TableCell>
-                <TableCell>
+                <TableCell className="hidden sm:table-cell">
                   <Badge variant="outline" className={cn(priority.className)}>
                     {priority.label}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-muted-foreground">
+                <TableCell className="text-muted-foreground hidden lg:table-cell">
                   {format(parseISO(task.dueDate), 'MMM d, yyyy')}
                 </TableCell>
-                <TableCell className="text-muted-foreground">
+                <TableCell className="text-muted-foreground hidden xl:table-cell">
                   {task.timeSpent}h / {task.timeEstimate}h
                 </TableCell>
                 <TableCell>
@@ -206,7 +209,7 @@ export function TaskTable({ tasks, onStatusChange, onEdit, onDelete }: TaskTable
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="h-8 w-8 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity"
                       >
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>

@@ -20,9 +20,9 @@ export default function TimeTracking() {
         title="Time Tracking" 
         subtitle={`${stats.hoursThisWeek} hours this week`} 
       />
-      <div className="p-6 space-y-6 animate-fade-in">
+      <div className="p-4 md:p-6 space-y-4 md:space-y-6 animate-fade-in">
         {/* Summary Cards */}
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -45,7 +45,7 @@ export default function TimeTracking() {
               <div className="text-2xl font-bold">${totalEarningsToday.toLocaleString()}</div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="sm:col-span-2 md:col-span-1">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 Hours This Month
@@ -59,7 +59,7 @@ export default function TimeTracking() {
         </div>
 
         {/* Timer and Entries */}
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 md:gap-6 lg:grid-cols-3">
           <div>
             <TimerWidget />
           </div>

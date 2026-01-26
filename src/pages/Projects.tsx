@@ -73,11 +73,11 @@ export default function Projects() {
         title="Projects" 
         subtitle={`${projects.filter(p => p.status === 'active').length} active projects`} 
       />
-      <div className="p-6 space-y-6 animate-fade-in">
+      <div className="p-4 md:p-6 space-y-4 md:space-y-6 animate-fade-in">
         {/* Filters */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-1 gap-3">
-            <div className="relative flex-1 max-w-sm">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search projects..."
@@ -87,7 +87,7 @@ export default function Projects() {
               />
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-full sm:w-40">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -99,7 +99,7 @@ export default function Projects() {
               </SelectContent>
             </Select>
           </div>
-          <div className="flex gap-2">
+          <div className="flex justify-between items-center gap-2">
             <div className="flex rounded-lg border border-border p-1">
               <Button
                 variant={viewMode === 'grid' ? 'secondary' : 'ghost'}
@@ -122,7 +122,7 @@ export default function Projects() {
               <DialogTrigger asChild>
                 <Button className="gap-2">
                   <Plus className="h-4 w-4" />
-                  New Project
+                  <span className="hidden sm:inline">New Project</span>
                 </Button>
               </DialogTrigger>
               <DialogContent>
