@@ -60,21 +60,24 @@ export default function Landing() {
       {/* Navigation */}
       <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Briefcase className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-foreground">FreelanceOS</span>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Link to="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          </Link>
+          <div className="flex items-center gap-1 sm:gap-4">
+            <Link to="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-2 sm:px-0">
               Pricing
             </Link>
             <ThemeToggle />
-            <Link to="/login">
+            <Link to="/login" className="hidden sm:block">
               <Button variant="ghost">Sign in</Button>
             </Link>
-            <Link to="/register">
+            <Link to="/login" className="sm:hidden">
+              <Button variant="ghost" size="sm">Sign in</Button>
+            </Link>
+            <Link to="/register" className="hidden sm:block">
               <Button>Get Started</Button>
             </Link>
           </div>
