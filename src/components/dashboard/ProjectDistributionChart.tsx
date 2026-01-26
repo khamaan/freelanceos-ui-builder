@@ -5,19 +5,19 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recha
 export function ProjectDistributionChart() {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold">Project Distribution</CardTitle>
+      <CardHeader className="pb-2 sm:pb-6">
+        <CardTitle className="text-base sm:text-lg font-semibold">Project Distribution</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[300px]">
+      <CardContent className="px-2 sm:px-6">
+        <div className="h-[220px] sm:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={projectDistribution}
                 cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={100}
+                cy="45%"
+                innerRadius={40}
+                outerRadius={70}
                 paddingAngle={2}
                 dataKey="value"
               >
@@ -31,12 +31,14 @@ export function ProjectDistributionChart() {
                   border: '1px solid hsl(var(--border))',
                   borderRadius: '8px',
                   color: 'hsl(var(--foreground))',
+                  fontSize: '12px',
                 }}
                 formatter={(value: number) => [`${value}%`, 'Share']}
               />
               <Legend
+                wrapperStyle={{ fontSize: '12px' }}
                 formatter={(value) => (
-                  <span style={{ color: 'hsl(var(--foreground))' }}>{value}</span>
+                  <span style={{ color: 'hsl(var(--foreground))', fontSize: '11px' }}>{value}</span>
                 )}
               />
             </PieChart>

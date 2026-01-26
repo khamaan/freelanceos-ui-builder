@@ -12,14 +12,14 @@ import {
 
 export function RevenueChart() {
   return (
-    <Card className="col-span-2">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold">Revenue Overview</CardTitle>
+    <Card className="lg:col-span-2">
+      <CardHeader className="pb-2 sm:pb-6">
+        <CardTitle className="text-base sm:text-lg font-semibold">Revenue Overview</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="h-[300px]">
+      <CardContent className="px-2 sm:px-6">
+        <div className="h-[200px] sm:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={revenueData}>
+            <AreaChart data={revenueData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
@@ -30,16 +30,19 @@ export function RevenueChart() {
               <XAxis
                 dataKey="month"
                 stroke="hsl(var(--muted-foreground))"
-                fontSize={12}
+                fontSize={10}
                 tickLine={false}
                 axisLine={false}
+                tick={{ fontSize: 10 }}
+                interval="preserveStartEnd"
               />
               <YAxis
                 stroke="hsl(var(--muted-foreground))"
-                fontSize={12}
+                fontSize={10}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => `$${value / 1000}k`}
+                width={45}
               />
               <Tooltip
                 contentStyle={{
@@ -47,6 +50,7 @@ export function RevenueChart() {
                   border: '1px solid hsl(var(--border))',
                   borderRadius: '8px',
                   color: 'hsl(var(--foreground))',
+                  fontSize: '12px',
                 }}
                 formatter={(value: number) => [`$${value.toLocaleString()}`, 'Revenue']}
               />
