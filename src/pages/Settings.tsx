@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { SubscriptionManagement } from '@/components/settings/SubscriptionManagement';
 import { currentUser } from '@/lib/mockData';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Camera, Save } from 'lucide-react';
@@ -287,30 +288,7 @@ export default function Settings() {
           </TabsContent>
 
           <TabsContent value="billing">
-            <Card>
-              <CardHeader>
-                <CardTitle>Billing & Subscription</CardTitle>
-                <CardDescription>
-                  Manage your subscription and billing information.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="rounded-lg border border-border p-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium">Pro Plan</p>
-                      <p className="text-sm text-muted-foreground">$29/month</p>
-                    </div>
-                    <Button variant="outline">Change Plan</Button>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm font-medium">Next billing date</p>
-                  <p className="text-muted-foreground">March 1, 2024</p>
-                </div>
-                <Button variant="outline">View Billing History</Button>
-              </CardContent>
-            </Card>
+            <SubscriptionManagement />
           </TabsContent>
         </Tabs>
       </div>
