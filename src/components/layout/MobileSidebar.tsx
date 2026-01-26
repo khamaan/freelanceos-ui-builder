@@ -7,12 +7,11 @@ import {
   Clock, 
   Settings,
   Briefcase,
-  Menu,
-  X
+  Menu
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { useState } from 'react';
 
 const navItems = [
@@ -39,19 +38,12 @@ export function MobileSidebar() {
       <SheetContent side="left" className="w-64 p-0">
         <div className="flex h-full flex-col bg-sidebar">
           {/* Logo */}
-          <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Briefcase className="h-4 w-4 text-primary-foreground" />
-              </div>
-              <span className="text-lg font-semibold text-foreground">FreelanceOS</span>
+          <SheetHeader className="flex h-16 flex-row items-center gap-2 border-b border-sidebar-border px-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+              <Briefcase className="h-4 w-4 text-primary-foreground" />
             </div>
-            <SheetClose asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <X className="h-4 w-4" />
-              </Button>
-            </SheetClose>
-          </div>
+            <SheetTitle className="text-lg font-semibold text-foreground">FreelanceOS</SheetTitle>
+          </SheetHeader>
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 p-3">
